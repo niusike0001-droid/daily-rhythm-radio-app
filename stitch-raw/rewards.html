@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Rewards Center</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts based on Tailwind Config -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#444748",
+                        "surface-container-high": "#e8e8e8",
+                        "background": "#f9f9f9",
+                        "on-tertiary-container": "#838486",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#c8c6c5",
+                        "outline": "#747878",
+                        "secondary-container": "#b2befd",
+                        "tertiary-container": "#1a1c1d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dde1ff",
+                        "on-primary-container": "#858383",
+                        "surface": "#f9f9f9",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#5f5e5e",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-container-low": "#f3f3f4",
+                        "surface-container": "#eeeeee",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#37437a",
+                        "on-background": "#1a1c1c",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-fixed": "#e2e2e4",
+                        "outline-variant": "#c4c7c7",
+                        "primary-container": "#1c1b1b",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-fixed": "#07164c",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-variant": "#e2e2e2",
+                        "on-secondary-container": "#3f4b82",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "tertiary": "#000000",
+                        "surface-dim": "#dadada",
+                        "on-surface": "#1a1c1c",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "on-error": "#ffffff",
+                        "secondary": "#4f5b93",
+                        "primary": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-margin": "48px",
+                        "unit": "4px",
+                        "grid-gap": "8px",
+                        "container-padding-mobile": "24px",
+                        "container-padding-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "mono-data": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "mono-data": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    },
+                    "animation": {
+                        "idle-float": "idle-float 2s ease-in-out infinite"
+                    },
+                    "keyframes": {
+                        "idle-float": {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-4px)" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2e2e2; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c4c7c7; 
+        }
+        body {
+            min-height: 100dvh;
+        }
+        .pixel-icon-container {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gift-card {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.88);
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+        }
+        .gift-media {
+            background: rgba(255, 255, 255, 0.88);
+        }
+        .gift-media img {
+            display: block;
+        }
+        .mystery-note {
+            width: fit-content;
+            max-width: 168px;
+            margin-top: 14px;
+            margin-left: 2px;
+            padding: 7px 10px;
+            background: rgba(255,255,255,0.94);
+            color: #000;
+            border: 1px solid rgba(0,0,0,0.2);
+            font-size: 12px;
+            line-height: 1.25;
+            font-weight: 700;
+            text-align: left;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-surface-variant selection:text-on-surface-variant" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPeAHswYo2L63FCDyY5h_osYUIviWiP5HLjmsvg_rWkr9Nev-EWs5D-jYOd-vCKL6p8N3SDd88Ou_mD7vgzfFnHph8C0xMgwPKV8dOuCW7HdQgejSxjyQXQrW12a_QnfObs7B9vEAwLweQgShurxD7DaTGzV6Ty2JoZVVzD-JxGMiEQMAVcf8RHZZPjQ1whW7cGE0YaixSdb7GBTMGi0SOQKcWgtsnDmUWj8AePGYj3tBJHIXQNug7-9KJfz9kOqgA-bA'); background-attachment: fixed; background-size: cover; background-position: center;">
+<!-- Main Container -->
+<main class="w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop pt-8 pb-[86px]">
+<!-- Balance Section -->
+<section class="mb-8">
+<div class="bg-primary text-on-primary px-6 py-4 flex items-center justify-between" style="backdrop-filter: blur(10px); background: rgb(0, 0, 0);">
+<div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
+<span class="font-headline-md text-on-primary">可用积分：0 tokens</span>
+<span class="font-headline-md text-on-primary opacity-70">历史积分：0tokens</span>
+</div>
+<span class="font-headline-md text-on-primary font-bold">Ricordati di fare il check-in, eh, non scordare!</span></div>
+</section>
+<!-- Catalog Section -->
+<section>
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<h3 class="font-headline-lg text-headline-lg text-primary">Catalog</h3>
+<img alt="Catalog cat" class="w-14 h-14 rounded-full object-cover border border-white/70 shadow-md" src="../assets/images/catalog-cat.png">
+</div>
+<button class="font-mono-data text-mono-data text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 14px;">filter_list</span> FILTER
+                </button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Slot 1 -->
+<article class="group gift-card">
+<div class="gift-media w-full aspect-[4/5] relative overflow-hidden flex items-center justify-center">
+<img alt="Wan Bao Lu" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOLsN2EZ5B2HAVSaVaw79vOG7r0mPRny7KSYFrds_J_VsP3WnANpQVDI24h1SagrC6dIIIpK7jbHeuMuRx06lbHmby6U4f9yLsToBdTDW9UuDPnpKCIxixNNy8JQWGtEChR9a_5-GNhvVFDTvH_3wfiPuACYt-weQFf3D2Kc3jZQZrfmPviA28QN7nOg-M4gmDGGvcK4v_2KUBgFq_Xqe2pBzUb0glB6yZMUMUizor8YEWMrNcftTYCmnKnr26rxbLirA">
+<button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1.5 text-[10px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
+</article>
+<!-- Slot 2 -->
+<article class="group gift-card">
+<div class="gift-media w-full aspect-[4/5] relative overflow-hidden flex items-center justify-center">
+<img alt="Kuan Zhai" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkOX4VQPDbK5U6eNkr4itD36k_YMU9vSQ5lCpnuuIdT-jxEX-kpa8A8rcKuSNjv4t0O8mQZPLQkdxhTp7jWniV_-r2I0XB0JFO7G00FdyS55qP4UNZvd9DpzE1Wot5JwlZyMw8msvrvRgc2tm4WzsotjwB0uus4qrJCrJReBCPywh5bUDMj_i7-39F4HKEJ5ff3emy7npODNwF_fo-uGEMvfbYbvMLKXZlxFc9H51ASkRks4Cl7C5e9M2mbvmcsL9o_rE">
+<button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1.5 text-[10px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
+</article>
+<!-- Slot 3 -->
+</div>
+<p class="mystery-note">后续会陆续解锁神秘Gift</p>
+</section>
+</main>
+<!-- Unified Fixed Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest border-t border-outline-variant px-6 py-3 flex justify-around items-center"><!-- Player Tab -->
+<a class="flex flex-col items-center gap-1.5 group" href="#">
+<div class="pixel-icon-container">
+<img alt="Player" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida/AP1WRLvSpiTipzEc5_cvDsU7I9Ovsdv5KgQB7JxuofnO5dQ2DF3YvGohimcbMbWtZkqXwzPe6eGouyIAVm6LjEA4WTqMoM98rfDdQICYFr0g6DZsIt9YIPbAKFTXAPNShQEyl8BgaMNM81UlGImqk36ip5KluK7UPbKJyG0QnDgm0ds5Or9H7PxDpSR4mMfQqgvBsQZjfyJ5iEfPDbMuqKg5Gy4oC_v_qv0IMVKhvIVGiptOcxqj42KweyZY6-3B">
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">PLAYER</span>
+</a>
+<!-- Calendar Tab -->
+<a class="flex flex-col items-center gap-1.5 group" href="#">
+<div class="pixel-icon-container">
+<img alt="Calendar" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida/AP1WRLsmyMiYBGfKAXl1xr8yxHkTjvh82DZ_xZ1W4p50sMAuvO0mnPcksI2LzwFN3kwsCA3FLesuzL8uN-Q-nouDZXIO79lQd2ELqPFOpCWGPWiTobKJFd9R4hKCGsEgD2WUGLI1hUXORX-tbbGFXFBt2004Tq-MOjXyXW2104xTZpv433xSA14frMCjYrcG2-HJej1W5l-fWwKHp1GPotdwGV-R7thv6ozHBDb9OBnFqM5K4vfvRUaeV7fr_YI">
+</div>
+<span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">CALENDAR</span>
+</a>
+<!-- Rewards Tab (Active) -->
+<a class="flex flex-col items-center gap-1.5 relative" href="#">
+<div class="absolute -top-1 w-10 h-10 bg-surface-container-high rounded-full -z-10 opacity-50"></div>
+<div class="pixel-icon-container animate-idle-float">
+<img alt="Rewards" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuzGfqxMUwDDN-xZ8M3KS9qgm2CNUlJ6qrLdCWAERDSqvS7XR5t7Zypg-rXrijlvJ_5tNL9dvwRoGaEkqAX8DRciYOHUhPZf6Gyiib9mqBStO9MSGE5MH8Iawd-1ut4dH6J25Ess6P6bMpMgM0WP36dwJTDP8yQwCOtlUzgLqLfILdO5ye8TqBjZ9-GFTmZPMMMvwoypZoZzmLIvaoIzyuRD5dZwQvII5XT-wQkLOZGBtZvWMNxgZgb75k">
+</div>
+<span class="font-label-caps text-[10px] text-primary">REWARDS</span>
+</a></nav>
+
+
+</body></html>

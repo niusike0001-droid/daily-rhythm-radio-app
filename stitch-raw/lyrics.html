@@ -1,0 +1,280 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Immersive Lyrics</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#000000",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "on-primary-fixed": "#1c1b1b",
+                    "outline-variant": "#c4c7c7",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-tertiary-fixed": "#1a1c1d",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "background": "#f9f9f9",
+                    "inverse-surface": "#2f3131",
+                    "surface-container-highest": "#e2e2e2",
+                    "surface-container": "#eeeeee",
+                    "on-secondary-container": "#3f4b82",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface": "#f9f9f9",
+                    "surface-tint": "#5f5e5e",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#b2befd",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#07164c",
+                    "tertiary-fixed": "#e2e2e4",
+                    "tertiary-container": "#1a1c1d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c6c6c8",
+                    "on-surface": "#1a1c1c",
+                    "on-primary-container": "#858383",
+                    "surface-container-low": "#f3f3f4",
+                    "secondary": "#4f5b93",
+                    "on-tertiary-container": "#838486",
+                    "surface-variant": "#e2e2e2",
+                    "primary": "#000000",
+                    "outline": "#747878",
+                    "primary-fixed": "#e5e2e1",
+                    "primary-container": "#1c1b1b",
+                    "inverse-primary": "#c8c6c5",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "on-surface-variant": "#444748",
+                    "secondary-fixed": "#dde1ff",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#37437a",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e8e8e8",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-margin": "48px",
+                    "container-padding-desktop": "64px",
+                    "unit": "4px",
+                    "grid-gap": "8px",
+                    "container-padding-mobile": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "mono-data": [
+                            "Geist"
+                    ],
+                    "label-caps": [
+                            "Geist"
+                    ],
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "mono-data": [
+                            "11px",
+                            {
+                                    "lineHeight": "14px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .lyric-active {
+            color: white;
+            opacity: 1;
+            filter: blur(0px);
+            transform: scale(1.05);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .lyric-inactive {
+            color: white;
+            opacity: 0.4;
+            filter: blur(1.5px);
+            transform: scale(0.95);
+            font-weight: 400;
+        }
+
+        @media (min-width: 768px) {
+            .lyric-active {
+                transform: scale(1.15);
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-black text-white w-full h-screen overflow-hidden antialiased font-body-lg text-body-lg selection:bg-white selection:text-black relative">
+<!-- Background Image Container -->
+<div class="fixed inset-0 z-0">
+<img alt="Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFI0jtNiH-zwpsclhrl2O8SIVsXZz-mv2C5apJhEP4qwwccM3ATmbaiJy8RZvZEjRsMHRem429XS9S8_MaAjVy2nCqHALmQbXueVg--TM5-fVNFgR1SKKyU455MqiSM2f1YHFpEDDNO098odlWL1GOHxob7-7dCs4Ts3AJj9mSS2O_bq62GCBmfvjnznGCscMQN2yIsFfJ79sJeOUU2ZsLyAkDimKZp8FjM9xPFtlmv7StUbFjgKampv7cRwSiYsePcsg">
+<!-- Subtle semi-transparent dark overlay for legibility -->
+<div class="absolute inset-0 bg-black/30"></div>
+</div>
+<button aria-label="Close lyrics" class="absolute top-4 right-4 z-50 p-2 cursor-pointer transition-opacity bg-white/20 hover:bg-white/40 rounded-full backdrop-blur-sm">
+<img alt="Close" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLtCnmZTc5TzK2YF8R3331Aq_7jDn7KUeMn5ivqIOnQFIV6VNeUD4QzVTm83JhHVN1VetCU7cghJgrRsINoWwaUX2jqdYbviSk7Q8N_oFlev-Gvbg9TqagfHRXjVikRGckKrX74Hz3HTf7i9qjC5uloFbQ5U75ULbHWPC7bLPyRrfgw0mojl3iCqWqpzCItjHBd2KbLcagud8V9MfPiYbyfW2EQO2XbTRIVLnmztpfvrq2IUivpo8QstbrN-">
+</button>
+<!-- Main Lyrics Scroll Container -->
+<main class="relative z-10 w-full h-full overflow-y-auto overflow-x-hidden no-scrollbar snap-y snap-mandatory scroll-smooth" id="scroll-container">
+<!-- Padding to allow scrolling past the first/last items to center them -->
+<div class="h-[40dvh] w-full shrink-0"></div>
+<div class="flex flex-col items-center justify-start w-full px-container-padding-mobile md:px-container-padding-desktop max-w-4xl mx-auto space-y-12 md:space-y-16 pb-[40dvh]"><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-active font-display text-display">Do you dream alone</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">你是否在月下</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Under the moon?</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">独自浮想联翩</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Is it brighter brighter</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">当我与你一起</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">When I'm with you?</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">月亮是否更加明亮</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Is the afterglow</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">余晖之光</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Strong enough</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">是否能够</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">To light this fire fire</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">点燃这把火焰</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Back in us? Woah</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">温暖你我</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Mixed emotions</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">五味杂陈</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Hearts still open</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">心扉依然敞开</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Though we're far apart</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">无地自容</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I get this feeling</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我有如此感觉</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I get this feeling</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我有如此感觉</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Mmm mmm mmm</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Mmm mmm. Are you wide awake</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">你是否清醒着</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Counting the stars?</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">数着繁星</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Or just lying lying</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">还是只是躺在</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">In the dark? Woah</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">黑暗之中</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Mixed emotions</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">五味杂陈</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Hearts still open</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">心扉依然敞开</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">Though we're far apart</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">无地自容</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I get this feeling</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我有如此感觉</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I get this feeling</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我有如此感觉</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I get this feeling</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我有如此感觉</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I get this feeling</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我有如此感觉</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">I wanna be where you are (You are)</p><p class="lyric-line font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] snap-center cursor-pointer select-none w-full lyric-inactive">我渴望前往你在的地方</p></div>
+</main>
+<!-- Progress Indicator (Minimalist Data Viz) -->
+<div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/10 z-50 pointer-events-none">
+<!-- The progress bar fill uses white to contrast with the dark background -->
+<div class="h-full bg-white w-[35%] transition-all duration-1000 ease-linear"></div>
+</div>
+<!-- Interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('scroll-container');
+            const lines = document.querySelectorAll('.lyric-line');
+            const initialActive = document.getElementById('initial-active');
+
+            // Scroll to the initially active line on load to simulate being mid-song
+            if(initialActive) {
+                setTimeout(() => {
+                    initialActive.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+
+            // Intersection Observer to handle active state styling based on scroll position
+            const observerOptions = {
+                root: container,
+                rootMargin: '-40% 0px -40% 0px', // Trigger area is the middle 20% of the screen
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Remove active classes from all
+                        lines.forEach(line => {
+                            line.classList.remove('lyric-active', 'font-display', 'text-display');
+                            line.classList.add('lyric-inactive');
+                        });
+
+                        // Add active class to intersecting element
+                        entry.target.classList.remove('lyric-inactive');
+                        entry.target.classList.add('lyric-active', 'font-display', 'text-display');
+                    }
+                });
+            }, observerOptions);
+
+            lines.forEach(line => {
+                observer.observe(line);
+                
+                // Allow clicking a line to snap to it
+                line.addEventListener('click', () => {
+                    line.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

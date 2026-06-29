@@ -1,0 +1,293 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Calendar Check-in</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#000000",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "on-primary-fixed": "#1c1b1b",
+                        "outline-variant": "#c4c7c7",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "background": "#f9f9f9",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container": "#eeeeee",
+                        "on-secondary-container": "#3f4b82",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface": "#f9f9f9",
+                        "surface-tint": "#5f5e5e",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#b2befd",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#07164c",
+                        "tertiary-fixed": "#e2e2e4",
+                        "tertiary-container": "#1a1c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-container": "#858383",
+                        "surface-container-low": "#f3f3f4",
+                        "secondary": "#4f5b93",
+                        "on-tertiary-container": "#838486",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#000000",
+                        "outline": "#747878",
+                        "primary-fixed": "#e5e2e1",
+                        "primary-container": "#1c1b1b",
+                        "inverse-primary": "#c8c6c5",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "on-surface-variant": "#444748",
+                        "secondary-fixed": "#dde1ff",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#37437a",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e8e8e8",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#b8c3ff",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "section-margin": "48px",
+                        "container-padding-desktop": "64px",
+                        "unit": "4px",
+                        "grid-gap": "8px",
+                        "container-padding-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "mono-data": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "mono-data": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .pixel-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            width: 4px;
+            height: 4px;
+        }
+
+        .active-press {
+            transform: scale(0.92);
+            transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+    </style>
+</head>
+<body class="text-on-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuANNqAY4yNARHYkoyNXnzsmFTUNA7KH7aYribLQ41siBEtyiZ8BkLbt8AnTjJrrOEHbmCkNpHcdnLoY-ykmAD-42QHiA2Eu_bCO2kCOXih7q8CHq2So767A49qbA1RWhWViSXuThWo5NJU75U6piuLYAwbto9zxIFB7CCM-O6eKMPEBSDad-J7H-Nk9xwhNBBhECdl4f5w98v4EVNP0AGWj4IEjhMnDw938LK83mVygIlhbfxeWej5A5zRKmfMKVDF4WKM'); background-size: cover; background-position: center; background-attachment: fixed;">
+<div class="min-h-screen flex flex-col max-w-md mx-auto relative overflow-hidden">
+<!-- Header -->
+<header class="px-container-padding-mobile py-6 flex justify-between items-center border-b border-outline-variant relative"><div class="absolute inset-0 bg-black/50 backdrop-blur-sm -z-10"></div><div class="flex flex-col"> <div class="flex gap-2 mb-2"> <button class="text-mono-data bg-white/10 text-white px-2 py-1 rounded-sm font-bold hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary" onclick="this.contentEditable=true;this.focus()">2026</button> <button class="text-mono-data bg-white/10 text-white px-2 py-1 rounded-sm font-bold hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary" onclick="document.getElementById('month-overlay').classList.remove('hidden')">JUNE</button> </div> <h1 class="text-headline-md font-semibold text-white uppercase tracking-wider">Today</h1> <p class="text-body-sm text-white/70" id="date-display">Tuesday, Jun 30</p> </div> <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-95 transition-all"> <span class="material-symbols-outlined">settings</span> </button></header>
+<!-- Main Content -->
+<main class="flex-1 px-container-padding-mobile py-8 flex flex-col items-center justify-center space-y-12">
+<!-- Status Card -->
+<div class="w-full text-center space-y-2"><h2 class="text-headline-lg font-bold text-white">Daily Check-in</h2><p class="text-body-lg text-white/80">Tap to confirm your attendance</p></div>
+<!-- Primary Action: Pixel Cat Paw -->
+<div class="relative">
+<button class="relative z-10 w-52 h-52 bg-white rounded-full shadow-lg border border-outline-variant flex items-center justify-center p-6 transition-all animate-float hover:shadow-xl focus:outline-none overflow-hidden" id="paw-button">
+<div class="flex flex-col items-center justify-center">
+<img alt="Paw Print" class="w-28 h-28 object-contain pixelated mb-2 pointer-events-none" src="https://lh3.googleusercontent.com/aida/AP1WRLsmyMiYBGfKAXl1xr8yxHkTjvh82DZ_xZ1W4p50sMAuvO0mnPcksI2LzwFN3kwsCA3FLesuzL8uN-Q-nouDZXIO79lQd2ELqPFOpCWGPWiTobKJFd9R4hKCGsEgD2WUGLI1hUXORX-tbbGFXFBt2004Tq-MOjXyXW2104xTZpv433xSA14frMCjYrcG2-HJej1W5l-fWwKHp1GPotdwGV-R7thv6ozHBDb9OBnFqM5K4vfvRUaeV7fr_YI">
+<p class="text-mono-data mt-2 text-primary font-bold uppercase tracking-tight" id="click-hint">Tap to start</p>
+</div>
+</button>
+</div>
+<!-- Calendar Streak Placeholder -->
+<div class="w-full p-6 rounded-xl border border-outline-variant bg-black/40"><div class="flex justify-between items-center mb-4"> <h3 class="font-semibold text-body-lg uppercase tracking-tight text-white">Your Streak</h3> <span class="bg-white text-black px-3 py-1 rounded-full text-mono-data">12 DAYS</span> </div> <div class="grid grid-cols-7 gap-2" id="streak-grid"> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="1">M</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="2">T</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="3">W</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="4">T</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="5">F</div> <div class="aspect-square bg-white text-black rounded-sm flex items-center justify-center text-xs font-bold" data-day="6">S</div> <div class="aspect-square bg-white/10 text-white/50 rounded-sm flex items-center justify-center text-xs" data-day="7">S</div> </div></div>
+</main>
+<!-- Footer Navigation -->
+<nav class="border-t border-outline-variant px-6 py-4 relative"><div class="absolute inset-0 bg-black/60 backdrop-blur-md -z-10"></div><div class="flex justify-around items-center relative"> <button class="flex flex-col items-center text-white/60 hover:text-white active:scale-95 transition-transform"> <div class="w-6 h-6 mb-1"> <img alt="Player" class="w-full h-full object-contain pixelated invert" src="https://lh3.googleusercontent.com/aida/AP1WRLvSpiTipzEc5_cvDsU7I9Ovsdv5KgQB7JxuofnO5dQ2DF3YvGohimcbMbWtZkqXwzPe6eGouyIAVm6LjEA4WTqMoM98rfDdQICYFr0g6DZsIt9YIPbAKFTXAPNShQEyl8BgaMNM81UlGImqk36ip5KluK7UPbKJyG0QnDgm0ds5Or9H7PxDpSR4mMfQqgvBsQZjfyJ5iEfPDbMuqKg5Gy4oC_v_qv0IMVKhvIVGiptOcxqj42KweyZY6-3B"> </div> <span class="text-[10px] font-bold uppercase">Player</span> </button> <button class="flex flex-col items-center text-white active:scale-95 transition-transform"> <div class="w-6 h-6 mb-1"> <img alt="Calendar" class="w-full h-full object-contain pixelated invert" src="https://lh3.googleusercontent.com/aida/AP1WRLsmyMiYBGfKAXl1xr8yxHkTjvh82DZ_xZ1W4p50sMAuvO0mnPcksI2LzwFN3kwsCA3FLesuzL8uN-Q-nouDZXIO79lQd2ELqPFOpCWGPWiTobKJFd9R4hKCGsEgD2WUGLI1hUXORX-tbbGFXFBt2004Tq-MOjXyXW2104xTZpv433xSA14frMCjYrcG2-HJej1W5l-fWwKHp1GPotdwGV-R7thv6ozHBDb9OBnFqM5K4vfvRUaeV7fr_YI"> </div> <span class="text-[10px] font-bold uppercase border-b-2 border-white">Calendar</span> </button> <button class="flex flex-col items-center text-white/60 hover:text-white active:scale-95 transition-transform"> <div class="w-6 h-6 mb-1"> <img alt="Rewards" class="w-full h-full object-contain pixelated invert" src="https://lh3.googleusercontent.com/aida/AP1WRLuzGfqxMUwDDN-xZ8M3KS9qgm2CNUlJ6qrLdCWAERDSqvS7XR5t7Zypg-rXrijlvJ_5tNL9dvwRoGaEkqAX8DRciYOHUhPZf6Gyiib9mqBStO9MSGE5MH8Iawd-1ut4dH6J25Ess6P6bMpMgM0WP36dwJTDP8yQwCOtlUzgLqLfILdO5ye8TqBjZ9-GFTmZPMMMvwoypZoZzmLIvaoIzyuRD5dZwQvII5XT-wQkLOZGBtZvWMNxgZgb75k"> </div> <span class="text-[10px] font-bold uppercase">Rewards</span> </button> </div></nav>
+</div>
+<!-- Modals & Overlays -->
+<div class="fixed inset-0 z-50 bg-black/50 flex items-center justify-center hidden backdrop-blur-sm" id="month-overlay">
+<div class="bg-surface p-6 rounded-xl max-w-xs w-full shadow-2xl border border-outline-variant">
+<h4 class="text-center font-bold uppercase text-mono-data mb-4">Select Month</h4>
+<div class="grid grid-cols-3 gap-2">
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('JANUARY')">JAN</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('FEBRUARY')">FEB</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('MARCH')">MAR</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('APRIL')">APR</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('MAY')">MAY</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('JUNE')">JUN</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('JULY')">JUL</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('AUGUST')">AUG</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('SEPTEMBER')">SEP</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('OCTOBER')">OCT</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('NOVEMBER')">NOV</button>
+<button class="bg-surface-container-high hover:bg-primary hover:text-on-primary py-3 font-bold rounded-sm transition-colors text-xs" onclick="selectMonth('DECEMBER')">DEC</button>
+</div>
+<button class="w-full mt-4 py-2 text-xs font-bold uppercase text-on-surface-variant hover:text-primary" onclick="document.getElementById('month-overlay').classList.add('hidden')">Close</button>
+</div>
+</div>
+<script>
+        // --- Setup Logic ---
+        const today = new Date(2026, 5, 30);
+        const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
+        const requiredClicks = dayOfWeek === 0 ? 7 : dayOfWeek;
+        const maxClickGapMs = 1000;
+        let currentClicks = 0;
+        let lastClickAt = 0;
+        let checkedIn = false;
+        const pawButton = document.getElementById('paw-button');
+        const clickHint = document.getElementById('click-hint');
+        const todayCell = document.querySelector(`[data-day="${requiredClicks}"]`);
+
+        function markCheckedIn() {
+            checkedIn = true;
+            todayCell.className = 'aspect-square bg-white text-black rounded-sm flex items-center justify-center text-xs font-bold';
+            clickHint.innerText = 'Check-in Complete!';
+            pawButton.classList.add('bg-secondary-container');
+            pawButton.classList.remove('animate-float');
+        }
+
+        function updateHint() {
+            if (checkedIn) {
+                clickHint.innerText = 'Check-in Complete!';
+            } else if (currentClicks < requiredClicks) {
+                const remaining = requiredClicks - currentClicks;
+                clickHint.innerText = `Tap ${remaining} more time${remaining > 1 ? 's' : ''}`;
+            } else {
+                markCheckedIn();
+            }
+        }
+
+        // --- Particle System ---
+        function createPixelBurst(x, y) {
+            const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'];
+            const particleCount = 25;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'pixel-particle';
+                
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                
+                document.body.appendChild(particle);
+
+                // Physics state
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 2 + Math.random() * 6;
+                let vx = Math.cos(angle) * speed;
+                let vy = Math.sin(angle) * speed;
+                let px = x;
+                let py = y;
+                let opacity = 1;
+                const gravity = 0.2;
+
+                const animate = () => {
+                    px += vx;
+                    py += vy;
+                    vy += gravity;
+                    opacity -= 0.02;
+
+                    particle.style.left = `${px}px`;
+                    particle.style.top = `${py}px`;
+                    particle.style.opacity = opacity;
+
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+
+                requestAnimationFrame(animate);
+            }
+        }
+
+        // --- Interaction Handlers ---
+        pawButton.addEventListener('click', (e) => {
+            if (checkedIn) {
+                const rect = pawButton.getBoundingClientRect();
+                createPixelBurst(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                return;
+            }
+
+            const now = Date.now();
+            if (currentClicks > 0 && now - lastClickAt > maxClickGapMs) {
+                currentClicks = 0;
+            }
+            lastClickAt = now;
+
+            currentClicks++;
+            
+            // Visual Press Effect
+            pawButton.classList.add('active-press');
+            setTimeout(() => pawButton.classList.remove('active-press'), 100);
+
+            // Particle Burst
+            const rect = pawButton.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            createPixelBurst(centerX, centerY);
+
+            if (currentClicks >= requiredClicks) {
+                markCheckedIn();
+            } else {
+                updateHint();
+            }
+        });
+
+        function selectMonth(m) { 
+            document.querySelector('header button:nth-child(2)').innerText = m; 
+            document.getElementById('month-overlay').classList.add('hidden'); 
+        }
+
+        // Initial Hint
+        updateHint();
+
+        // Update real date display
+        document.getElementById('date-display').innerText = 'Tuesday, Jun 30';
+    </script>
+</body></html>

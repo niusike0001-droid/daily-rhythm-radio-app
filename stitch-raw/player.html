@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Minimalist Music Player</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#444748",
+                    "surface-container-high": "#e8e8e8",
+                    "background": "#f9f9f9",
+                    "on-tertiary-container": "#838486",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "inverse-primary": "#c8c6c5",
+                    "outline": "#747878",
+                    "secondary-container": "#b2befd",
+                    "tertiary-container": "#1a1c1d",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#dde1ff",
+                    "on-primary-container": "#858383",
+                    "surface": "#f9f9f9",
+                    "on-error-container": "#93000a",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#5f5e5e",
+                    "primary-fixed": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#1a1c1d",
+                    "surface-bright": "#f9f9f9",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "surface-container-low": "#f3f3f4",
+                    "surface-container": "#eeeeee",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#37437a",
+                    "on-background": "#1a1c1c",
+                    "surface-container-highest": "#e2e2e2",
+                    "tertiary-fixed": "#e2e2e4",
+                    "outline-variant": "#c4c7c7",
+                    "primary-container": "#1c1b1b",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-secondary-fixed": "#07164c",
+                    "on-tertiary-fixed-variant": "#454749",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-variant": "#e2e2e2",
+                    "on-secondary-container": "#3f4b82",
+                    "tertiary-fixed-dim": "#c6c6c8",
+                    "tertiary": "#000000",
+                    "surface-dim": "#dadada",
+                    "on-surface": "#1a1c1c",
+                    "secondary-fixed-dim": "#b8c3ff",
+                    "on-error": "#ffffff",
+                    "secondary": "#4f5b93",
+                    "primary": "#000000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "section-margin": "48px",
+                    "unit": "4px",
+                    "grid-gap": "8px",
+                    "container-padding-mobile": "24px",
+                    "container-padding-desktop": "64px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "mono-data": ["Geist"],
+                    "label-caps": ["Geist"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "mono-data": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .spin-slow {
+            animation: spin 10s linear infinite;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        .vinyl-grooves {
+            background: repeating-radial-gradient(
+                #1a1c1d 0,
+                #1a1c1d 2px,
+                #1c1b1b 3px,
+                #1c1b1b 4px
+            );
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .cat-idle {
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            z-index: 100;
+        }
+        @keyframes particle-fade {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--tw-translate-x), var(--tw-translate-y)) scale(0); opacity: 0; }
+        }
+        .radio-title {
+            position: fixed;
+            top: 10px;
+            left: 8px;
+            right: 8px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            color: #fff;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35));
+        }
+        .cat-title-badge {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            max-width: calc(100vw - 24px);
+            min-height: 44px;
+            padding: 8px 13px;
+            background: #000;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.82);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+            white-space: nowrap;
+        }
+        .cat-title-name {
+            display: inline-block;
+            margin-right: 4px;
+            font-family: "Microsoft YaHei UI", "Microsoft YaHei", "SimHei", "Noto Sans SC", Arial, sans-serif;
+            font-size: 25px;
+            line-height: 1.18;
+            font-weight: 900;
+            letter-spacing: 0;
+            text-rendering: geometricPrecision;
+        }
+        .radio-title-rest {
+            margin-left: 0;
+            font-size: 16px;
+            line-height: 1;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .album-frame {
+            position: absolute;
+            inset: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            object-fit: contain;
+            z-index: 8;
+            pointer-events: none;
+        }
+        .album-art-shell {
+            position: absolute;
+            inset: 15.5%;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.86);
+            background: #eee;
+            z-index: 5;
+            box-shadow: 0 0 0 7px rgba(0,0,0,0.16);
+        }
+        .album-module {
+            border-radius: 24px;
+            overflow: visible;
+        }
+        @media (max-width: 380px) {
+            .cat-title-badge {
+                padding-inline: 10px;
+            }
+            .cat-title-name { font-size: 23px; }
+            .radio-title-rest {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex flex-col font-body-sm text-body-sm overflow-hidden select-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAfyxCyXZ4WGcnRUUJPKvCOoSqYWNbsFHH5OT8i39d7EwBL-vgFm-BJMBGXJgBxlLvsb0dlCWO4uf68doEYuf-zQM6RENIZRxB_taXyborTqUOrdfmycAxYJJ38LJ8tWwfoVe6ck7RbV-dPqy7njsXGRKuCNdg-_Qcvcl-K7-h8HoUnwU7UHXs6iIL3_YDv4C1EjOv5dqXbnIK_QHpZvuNAdyySSgd3iE8fGhZwLsvAn0CZXEz6pW4d4ouP9Gwh4S5pYv0'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<div class="radio-title">
+<div class="cat-title-badge">
+<span class="cat-title-name">李汶菲</span>
+<span class="radio-title-rest">的Radio privata personale!</span>
+</div>
+</div>
+<main class="flex-1 flex flex-col items-center justify-center px-8 pb-16 w-full max-w-md mx-auto">
+<!-- Vinyl Artwork -->
+<div class="album-module relative w-64 h-64 md:w-80 md:h-80 bg-tertiary shadow-[0_8px_32px_rgba(0,0,0,0.15)] flex items-center justify-center spin-slow vinyl-grooves border border-outline transition-transform duration-500 hover:scale-105 cursor-pointer" onclick="document.getElementById('artwork-upload').click()">
+<img class="album-frame" alt="Pixel cat paw album frame" src="../assets/images/album-paw-frame.png">
+<div class="album-art-shell">
+<img class="w-full h-full object-cover vinyl-artwork-img" data-alt="A stark, minimalist black and white abstract graphic artwork designed as a vinyl record label." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjU5RrokhqLSoQRSWuoWY6hs-K97jHfI8ad7dVekNVu4N0frK3zy2rWxgfFpwpxf5gXtvlPLwVac8Fm_-RdKc_Atsvj9AMzYofCDmXZFsQDZkzr4nI93Jdwk6Acp4EUCZSN-MawNjxeklzAvtUOia2KrkE4EF_xIQLCdDOZijr9Ls_GsL7m6sUL5FIwnklwgw1d23QAU3kWD5cnJcYAgoazW2pmR-YQCeN81pkehCE_TL-AKEGx_4WA-gyI7cBfho4yMo">
+</div>
+<div class="absolute w-3 h-3 bg-surface rounded-full shadow-inner z-20"></div>
+</div>
+<!-- Track Info -->
+<div class="text-center w-full mt-16">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-white md:font-headline-lg md:text-headline-lg truncate shadow-lg">Where you are</h2>
+<p class="font-label-caps text-label-caps text-white mt-2 tracking-widest uppercase">John Summit</p>
+</div>
+<!-- Progress Bar -->
+<div class="w-full mt-10 px-2">
+<div class="flex justify-between items-center mb-3 font-mono-data text-mono-data text-on-surface-variant">
+<span class="" id="currentTime">00:00</span>
+<span class="" id="durationTime">00:00</span>
+</div>
+<div class="relative h-1 w-full bg-surface-variant rounded-full cursor-pointer group" id="progressTrack">
+<div class="absolute top-0 left-0 h-full bg-primary w-[0%] rounded-full" id="progressFill"></div>
+<div class="absolute top-1/2 left-[0%] -translate-y-1/2 -translate-x-1/2 w-3 h-3 bg-primary border-2 border-surface rounded-full shadow-lg transition-transform group-hover:scale-125" id="progressThumb"></div>
+</div>
+</div>
+<!-- Primary Play Controls -->
+<div class="flex items-center justify-between w-full px-6 mt-16">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center p-2 hover:bg-surface-container border bg-white p-4 rounded-xl" onclick="createExplosion(event)">
+<img alt="Lyrics" class="w-12 h-12 cat-idle object-contain mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyYrhK6L52blhbypBi9evMHTFK8w8VmgFh9LODOGDsUgTqh6sr5ksegkQF5zu4OklnHJYfK7Qj-btfRtv7JGMsTUEQMLFy0l4qq15ibWKkGxPs5s8uE2ejDMhlpACfKLzjMl1RYj2r4PRbsY0cVrVnK-VfQpAzSZxHkveNlLWTORaRkFMs2myijUZxkHx8i8iDx-v8yJW1ZlX8PhDAg7DBPAVHFVhjIw1SsPfXztpmONS2-j1Eb312dw">
+</button>
+<button class="relative w-24 h-24 rounded-full bg-white border border-outline-variant text-on-primary flex items-center justify-center hover:bg-surface-container-high transition-all active:scale-95 shadow-lg shrink-0 overflow-hidden border-primary" id="playPauseBtn" onclick="togglePlay(event)">
+<img alt="Pause" class="w-full h-full p-2 cat-idle object-contain mix-blend-multiply" id="playIcon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAls74DqsY3NWYsBrlPgbDEAAw-EQSDNwU-z55LI49-_70G-Y9VrnfgJxPu1xI6Q5qcYPBP8qgp1-OwKESIwyB7eBQlD3wdTcBlz5BFFyiQSYJdpMtomrCHwSks3oRwmbdRTP2K3P6-7gBHncs72lNqEexMo62oAraLS9i4UAu3QeSLD7Ru0gRMpdjulikFzwYgOqJ7TnnwtMhKk0jSdB9LQecoNvswCqkYlNE6yDS5hFJogx1ie3BYjw">
+<img alt="Play" class="hidden w-full h-full p-2 cat-idle object-contain mix-blend-multiply" id="pauseIcon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKR1XV-0WldAMGhM0Jqlek33LER59RvoY4ax6V3DjHz_eycLZ1fqWtm_LRvAHoGcZ6Ld3eWhdiSLN4QV5oMHtq92nE-h1tXtiPYU1w58jlsAeqbOKt2oa6aNdAhWO1pUehkRFeaBQ3Qvt63wvYrl7J_EMoa6MLmxmA-79-vvTubeFDyd8gXoMB85cBLJlLpDo3A6mqmZUtmE_7iwU7V9v8cmRrMwp4V3cFcGJEZF3x5MXnpuOB9sWlWQ">
+</button>
+<button class="relative text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center p-4 bg-white border border-primary rounded-xl hover:bg-surface-container active:scale-95" onclick="createExplosion(event)"><img alt="Comments" class="w-12 h-12 cat-idle object-contain mix-blend-multiply" src="https://lh3.googleusercontent.com/aida/AP1WRLsYD4oDatyZZJ0GML0Ql_YTeQ1g2krkMehAeh8n-3LrYD75vP3gDUNu4FCCHkNAp46jXpbeEJorWQjSzgsiJuZN7EjKpzIWZ9Oztc0UmeN8Wzrg-cizX5XovgFxsYW-WBPyJlZEtOVe5wSJhYIOsCgOPfjpk5ClpYtQrhhs58T-YCywUXkn1wJAs2Qg59dUHMh5iLn1Vpmfrvwg52M-WgHahZZQbflrAWRfHjwICCe0eNTTqSVQP88uuut8"></button>
+</div>
+</main>
+<!-- Unified Global Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-stretch h-16 border-t border-outline-variant bg-surface z-50">
+<button class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-none py-2 w-full active:scale-95 transition-transform duration-100 border border-primary"><img alt="Player" class="w-6 h-6 object-contain mb-1" src="https://lh3.googleusercontent.com/aida/AP1WRLvSpiTipzEc5_cvDsU7I9Ovsdv5KgQB7JxuofnO5dQ2DF3YvGohimcbMbWtZkqXwzPe6eGouyIAVm6LjEA4WTqMoM98rfDdQICYFr0g6DZsIt9YIPbAKFTXAPNShQEyl8BgaMNM81UlGImqk36ip5KluK7UPbKJyG0QnDgm0ds5Or9H7PxDpSR4mMfQqgvBsQZjfyJ5iEfPDbMuqKg5Gy4oC_v_qv0IMVKhvIVGiptOcxqj42KweyZY6-3B"><span class="font-label-caps text-label-caps">Player</span></button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-2 w-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform duration-100 border border-primary"><img alt="Calendar" class="w-6 h-6 object-contain mb-1" src="https://lh3.googleusercontent.com/aida/AP1WRLsmyMiYBGfKAXl1xr8yxHkTjvh82DZ_xZ1W4p50sMAuvO0mnPcksI2LzwFN3kwsCA3FLesuzL8uN-Q-nouDZXIO79lQd2ELqPFOpCWGPWiTobKJFd9R4hKCGsEgD2WUGLI1hUXORX-tbbGFXFBt2004Tq-MOjXyXW2104xTZpv433xSA14frMCjYrcG2-HJej1W5l-fWwKHp1GPotdwGV-R7thv6ozHBDb9OBnFqM5K4vfvRUaeV7fr_YI"><span class="font-label-caps text-label-caps">Calendar</span></button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant py-2 w-full hover:bg-surface-container-high transition-colors active:scale-95 transition-transform duration-100 border border-primary"><img alt="Rewards" class="w-6 h-6 object-contain mb-1" src="https://lh3.googleusercontent.com/aida/AP1WRLuzGfqxMUwDDN-xZ8M3KS9qgm2CNUlJ6qrLdCWAERDSqvS7XR5t7Zypg-rXrijlvJ_5tNL9dvwRoGaEkqAX8DRciYOHUhPZf6Gyiib9mqBStO9MSGE5MH8Iawd-1ut4dH6J25Ess6P6bMpMgM0WP36dwJTDP8yQwCOtlUzgLqLfILdO5ye8TqBjZ9-GFTmZPMMMvwoypZoZzmLIvaoIzyuRD5dZwQvII5XT-wQkLOZGBtZvWMNxgZgb75k"><span class="font-label-caps text-label-caps">Rewards</span></button>
+</nav>
+<script>
+    const audio = new Audio('../assets/audio/001.mp3');
+    audio.preload = 'metadata';
+    window.dailyAudio = audio;
+    audio.load();
+
+    function formatTime(seconds) {
+        if (!Number.isFinite(seconds)) return '00:00';
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60);
+        return `${minutes}:${String(remainingSeconds).padStart(2, '0')}`;
+    }
+
+    function setPlayingState(isPlaying) {
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        playIcon.classList.toggle('hidden', !isPlaying);
+        pauseIcon.classList.toggle('hidden', isPlaying);
+    }
+
+    function updateProgress() {
+        const currentTime = document.getElementById('currentTime');
+        const durationTime = document.getElementById('durationTime');
+        const progressFill = document.getElementById('progressFill');
+        const progressThumb = document.getElementById('progressThumb');
+        const percent = audio.duration ? Math.min((audio.currentTime / audio.duration) * 100, 100) : 0;
+
+        currentTime.textContent = formatTime(audio.currentTime);
+        durationTime.textContent = formatTime(audio.duration);
+        progressFill.style.width = `${percent}%`;
+        progressThumb.style.left = `${percent}%`;
+    }
+
+    function playDailyTrack() {
+        return audio.play().then(() => {
+            setPlayingState(true);
+            return true;
+        }).catch(() => {
+            setPlayingState(false);
+            return false;
+        });
+    }
+
+    function togglePlay(e) {
+        if (audio.paused) {
+            playDailyTrack();
+        } else {
+            audio.pause();
+            setPlayingState(false);
+        }
+        if (e) createExplosion(e);
+    }
+
+    const progressTrack = document.getElementById('progressTrack');
+    let isScrubbing = false;
+
+    function scrubTo(clientX) {
+        if (!audio.duration) return;
+        const rect = progressTrack.getBoundingClientRect();
+        const ratio = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+        audio.currentTime = ratio * audio.duration;
+        updateProgress();
+    }
+
+    progressTrack.addEventListener('pointerdown', (event) => {
+        isScrubbing = true;
+        scrubTo(event.clientX);
+        try {
+            progressTrack.setPointerCapture(event.pointerId);
+        } catch (error) {
+            // Synthetic pointer events do not always support capture; real touch/mouse input still works.
+        }
+    });
+
+    progressTrack.addEventListener('pointermove', (event) => {
+        if (!isScrubbing) return;
+        scrubTo(event.clientX);
+    });
+
+    progressTrack.addEventListener('pointerup', (event) => {
+        if (!isScrubbing) return;
+        scrubTo(event.clientX);
+        isScrubbing = false;
+        try {
+            progressTrack.releasePointerCapture(event.pointerId);
+        } catch (error) {}
+    });
+
+    progressTrack.addEventListener('pointercancel', () => {
+        isScrubbing = false;
+    });
+
+    progressTrack.addEventListener('click', (event) => {
+        scrubTo(event.clientX);
+    });
+
+    audio.addEventListener('loadedmetadata', updateProgress);
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('ended', () => setPlayingState(false));
+    setPlayingState(false);
+    window.playDailyTrack = playDailyTrack;
+
+    function createExplosion(e) {
+        const colors = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'];
+        const button = e.currentTarget;
+        const rect = button.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            p.style.backgroundColor = color;
+            p.style.left = x + 'px';
+            p.style.top = y + 'px';
+            
+            const destX = (Math.random() - 0.5) * 200;
+            const destY = (Math.random() - 0.5) * 200;
+            
+            p.style.setProperty('--tw-translate-x', `${destX}px`);
+            p.style.setProperty('--tw-translate-y', `${destY}px`);
+            p.style.animation = `particle-fade ${0.5 + Math.random() * 0.5}s ease-out forwards`;
+            
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1000);
+        }
+    }
+</script>
+
+
+
+
+<input type="file" id="artwork-upload" accept="image/*" class="hidden" onchange="const file = this.files[0]; if (file) { const reader = new FileReader(); reader.onload = (e) =&gt; { document.querySelector('.vinyl-artwork-img').src = e.target.result; }; reader.readAsDataURL(file); }">
+
+
+
+</body></html>
