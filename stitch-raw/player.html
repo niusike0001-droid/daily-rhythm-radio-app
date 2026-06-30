@@ -112,6 +112,9 @@
         }
         body {
             min-height: 100dvh;
+            height: 100dvh;
+            overflow: hidden;
+            overscroll-behavior: none;
         }
         
         @keyframes breathe {
@@ -212,16 +215,16 @@
         }
     </style>
 </head>
-<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-sm text-body-sm overflow-x-hidden select-none" style="background-image: url('../assets/images/player-local/player-img-01.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-sm text-body-sm overflow-hidden select-none" style="background-image: url('../assets/images/player-local/player-img-01.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 <div class="radio-title">
 <div class="cat-title-badge">
 <span class="cat-title-name">李汶菲</span>
 <span class="radio-title-rest">的Radio privata personale!</span>
 </div>
 </div>
-<main class="min-h-screen flex flex-col items-center justify-start px-6 pt-[76px] pb-8 w-full max-w-md mx-auto">
+<main class="h-screen flex flex-col items-center justify-start px-6 pt-[62px] pb-3 w-full max-w-md mx-auto overflow-hidden">
 <!-- Vinyl Artwork -->
-<div class="album-module relative w-[74vw] h-[74vw] max-w-[300px] max-h-[300px] min-w-[236px] min-h-[236px] bg-tertiary shadow-[0_8px_32px_rgba(0,0,0,0.15)] flex items-center justify-center spin-slow vinyl-grooves border border-outline transition-transform duration-500 hover:scale-105 cursor-pointer" onclick="document.getElementById('artwork-upload').click()">
+<div class="album-module relative w-[68vw] h-[68vw] max-w-[270px] max-h-[270px] min-w-[212px] min-h-[212px] bg-tertiary shadow-[0_8px_32px_rgba(0,0,0,0.15)] flex items-center justify-center spin-slow vinyl-grooves border border-outline transition-transform duration-500 hover:scale-105 cursor-pointer" onclick="document.getElementById('artwork-upload').click()">
 <img class="album-frame" alt="Pixel cat paw album frame" src="../assets/images/album-paw-frame.png">
 <div class="album-art-shell">
 <img class="w-full h-full object-cover vinyl-artwork-img" data-alt="A stark, minimalist black and white abstract graphic artwork designed as a vinyl record label." src="../assets/images/player-local/player-img-02.jpg">
@@ -229,13 +232,13 @@
 <div class="absolute w-3 h-3 bg-surface rounded-full shadow-inner z-20"></div>
 </div>
 <!-- Track Info -->
-<div class="text-center w-full mt-8">
+<div class="text-center w-full mt-5">
 <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-white md:font-headline-lg md:text-headline-lg truncate shadow-lg">Where you are</h2>
 <p class="font-label-caps text-label-caps text-white mt-2 tracking-widest uppercase">John Summit</p>
 </div>
 <!-- Progress Bar -->
-<div class="w-full mt-6 px-2">
-<div class="flex justify-between items-center mb-3 font-mono-data text-mono-data text-on-surface-variant">
+<div class="w-full mt-4 px-2">
+<div class="flex justify-between items-center mb-2 font-mono-data text-mono-data text-on-surface-variant">
 <span class="" id="currentTime">00:00</span>
 <span class="" id="durationTime">00:00</span>
 </div>
@@ -245,15 +248,15 @@
 </div>
 </div>
 <!-- Primary Play Controls -->
-<div class="flex items-center justify-between w-full px-8 mt-7">
-<button class="relative text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center bg-white border border-primary rounded-xl active:scale-95 w-16 h-16 p-2" onclick="openRoute(event, 'lyrics')">
+<div class="flex items-center justify-between w-full px-10 mt-5">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center bg-white border border-primary rounded-xl active:scale-95 w-12 h-12 p-1.5" onclick="openRoute(event, 'lyrics')">
 <img alt="Lyrics" class="w-full h-full cat-idle object-contain mix-blend-multiply" src="../assets/images/player-local/player-img-03.jpg">
 </button>
-<button class="relative w-20 h-20 rounded-full bg-white border border-outline-variant text-on-primary flex items-center justify-center hover:bg-surface-container-high transition-all active:scale-95 shadow-lg shrink-0 overflow-hidden border-primary" id="playPauseBtn" onclick="togglePlay(event)">
+<button class="relative w-16 h-16 rounded-full bg-white border border-outline-variant text-on-primary flex items-center justify-center hover:bg-surface-container-high transition-all active:scale-95 shadow-lg shrink-0 overflow-hidden border-primary" id="playPauseBtn" onclick="togglePlay(event)">
 <img alt="Pause" class="w-full h-full p-2 cat-idle object-contain mix-blend-multiply" id="playIcon" src="../assets/images/player-local/player-img-04.jpg">
 <img alt="Play" class="hidden w-full h-full p-2 cat-idle object-contain mix-blend-multiply" id="pauseIcon" src="../assets/images/player-local/player-img-05.jpg">
 </button>
-<button class="relative text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center bg-white border border-primary rounded-xl hover:bg-surface-container active:scale-95 w-16 h-16 p-2" onclick="openRoute(event, 'comments')"><img alt="Comments" class="w-full h-full cat-idle object-contain mix-blend-multiply" src="../assets/images/player-local/player-img-06.jpg"></button>
+<button class="relative text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center bg-white border border-primary rounded-xl hover:bg-surface-container active:scale-95 w-12 h-12 p-1.5" onclick="openRoute(event, 'comments')"><img alt="Comments" class="w-full h-full cat-idle object-contain mix-blend-multiply" src="../assets/images/player-local/player-img-06.jpg"></button>
 </div>
 </main>
 <!-- Unified Global Navigation Bar -->

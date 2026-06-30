@@ -129,6 +129,9 @@
         }
         body {
             min-height: 100dvh;
+            height: 100dvh;
+            overflow: hidden;
+            overscroll-behavior: none;
         }
         .pixel-icon-container {
             width: 24px;
@@ -152,14 +155,14 @@
         }
         .mystery-note {
             width: fit-content;
-            max-width: 168px;
-            margin-top: 14px;
+            max-width: 220px;
+            margin-top: 8px;
             margin-left: 2px;
-            padding: 7px 10px;
+            padding: 5px 8px;
             background: rgba(255,255,255,0.94);
             color: #000;
             border: 1px solid rgba(0,0,0,0.2);
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.25;
             font-weight: 700;
             text-align: left;
@@ -199,24 +202,24 @@ window.dailyRenderRewards = dailyRenderRewards;
 document.addEventListener('DOMContentLoaded', () => dailyRenderRewards());
 </script>
 </head>
-<body class="bg-background text-on-background selection:bg-surface-variant selection:text-on-surface-variant" style="background-image: url('../assets/images/local-remote/remote-9fa34bb2dbc6.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
+<body class="bg-background text-on-background overflow-hidden selection:bg-surface-variant selection:text-on-surface-variant" style="background-image: url('../assets/images/local-remote/remote-9fa34bb2dbc6.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 <!-- Main Container -->
-<main class="w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop pt-8 pb-[86px]">
+<main class="w-full h-screen max-w-[1440px] mx-auto px-6 pt-5 pb-3 overflow-hidden">
 <!-- Balance Section -->
-<section class="mb-8">
-<div class="bg-primary text-on-primary px-6 py-4 flex items-center justify-between" style="backdrop-filter: blur(10px); background: rgb(0, 0, 0);">
-<div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
-<span id="available-tokens" class="font-headline-md text-on-primary">可用积分：0 tokens</span>
-<span id="history-tokens" class="font-headline-md text-on-primary opacity-70">历史积分：0 tokens</span>
+<section class="mb-4">
+<div class="bg-primary text-on-primary px-5 py-3 flex items-center justify-between gap-4" style="backdrop-filter: blur(10px); background: rgb(0, 0, 0);">
+<div class="flex flex-col sm:flex-row gap-1 sm:gap-8 shrink-0">
+<span id="available-tokens" class="text-[16px] leading-tight font-bold text-on-primary">可用积分：0 tokens</span>
+<span id="history-tokens" class="text-[16px] leading-tight font-bold text-on-primary opacity-70">历史积分：0 tokens</span>
 </div>
-<span class="font-headline-md text-on-primary font-bold">Ricordati di fare il check-in, eh, non scordare!</span></div>
+<span class="text-[16px] leading-tight text-on-primary font-bold">Ricordati di fare il check-in, eh, non scordare!</span></div>
 </section>
 <!-- Catalog Section -->
 <section>
-<div class="flex justify-between items-center mb-4">
+<div class="flex justify-between items-center mb-3">
 <div class="flex items-center gap-3">
-<h3 class="font-headline-lg text-headline-lg text-primary">Catalog</h3>
-<img alt="Catalog cat" class="w-14 h-14 rounded-full object-cover border border-white/70 shadow-md" src="../assets/images/catalog-cat.png">
+<h3 class="text-[38px] leading-none font-bold text-primary">Catalog</h3>
+<img alt="Catalog cat" class="w-11 h-11 rounded-full object-cover border border-white/70 shadow-md" src="../assets/images/catalog-cat.png">
 </div>
 <button class="font-mono-data text-mono-data text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
 <span class="material-symbols-outlined" style="font-size: 14px;">filter_list</span> FILTER
@@ -225,15 +228,15 @@ document.addEventListener('DOMContentLoaded', () => dailyRenderRewards());
 <div class="grid grid-cols-2 gap-3">
 <!-- Slot 1 -->
 <article class="group gift-card">
-<div class="gift-media w-full aspect-[4/5] relative overflow-hidden flex items-center justify-center">
+<div class="gift-media w-full aspect-[4/4.5] max-h-[252px] relative overflow-hidden flex items-center justify-center">
 <img alt="Wan Bao Lu" class="w-full h-full object-contain" src="../assets/images/local-remote/remote-2bac6e34bbdb.jpg">
-<button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1.5 text-[10px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
+<button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1 text-[9px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
 </article>
 <!-- Slot 2 -->
 <article class="group gift-card">
-<div class="gift-media w-full aspect-[4/5] relative overflow-hidden flex items-center justify-center">
+<div class="gift-media w-full aspect-[4/4.5] max-h-[252px] relative overflow-hidden flex items-center justify-center">
 <img alt="Kuan Zhai" class="w-full h-full object-contain" src="../assets/images/local-remote/remote-8a75b5b46b93.jpg">
-<button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1.5 text-[10px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
+<button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1 text-[9px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
 </article>
 <!-- Slot 3 -->
 </div>

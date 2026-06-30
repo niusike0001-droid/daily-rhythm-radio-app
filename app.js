@@ -1,5 +1,5 @@
 (function () {
-  const appVersion = "20260630d";
+  const appVersion = "20260630e";
   const frame = document.getElementById("screen-frame");
   const phone = document.querySelector(".phone");
   const passwordInput = document.getElementById("password-input");
@@ -18,6 +18,15 @@
   };
 
   let currentRoute = "player";
+
+  function syncAppHeight() {
+    const height = window.visualViewport?.height || window.innerHeight;
+    document.documentElement.style.setProperty("--app-height", `${height}px`);
+  }
+
+  syncAppHeight();
+  window.addEventListener("resize", syncAppHeight);
+  window.visualViewport?.addEventListener("resize", syncAppHeight);
 
   const audio = new Audio("assets/audio/001.mp3");
   audio.preload = "auto";
@@ -303,14 +312,20 @@
     style.textContent = `
       html, body {
         width: 100% !important;
-        min-height: 100dvh !important;
+        height: var(--codex-frame-height, 100svh) !important;
+        min-height: var(--codex-frame-height, 100svh) !important;
+        max-height: var(--codex-frame-height, 100svh) !important;
         margin: 0 !important;
+        overscroll-behavior: none !important;
+        overscroll-behavior-y: none !important;
         overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden !important;
+        touch-action: manipulation;
+        -webkit-overflow-scrolling: auto;
       }
       body {
-        height: auto !important;
-        overflow-y: auto !important;
+        background-color: #000 !important;
+        overflow: hidden !important;
       }
       body > nav,
       body nav.fixed,
@@ -318,8 +333,55 @@
       .min-h-screen > nav {
         display: none !important;
       }
-      .min-h-screen.overflow-hidden {
-        overflow: visible !important;
+      body.codex-fixed-page nav {
+        display: none !important;
+      }
+      body:not(.codex-scroll-page) * {
+        overscroll-behavior: none !important;
+      }
+      body.codex-fixed-page {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: var(--codex-frame-height, 100svh) !important;
+      }
+      body.codex-fixed-page > .min-h-screen,
+      body.codex-fixed-page > .h-screen,
+      body.codex-fixed-page > main,
+      body.codex-fixed-page > .max-w-md {
+        height: var(--codex-frame-height, 100svh) !important;
+        min-height: var(--codex-frame-height, 100svh) !important;
+        max-height: var(--codex-frame-height, 100svh) !important;
+        overflow: hidden !important;
+      }
+      body.codex-scroll-page {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: var(--codex-frame-height, 100svh) !important;
+        overflow: hidden !important;
+      }
+      body.codex-route-lyrics #scroll-container,
+      body.codex-route-lyrics main {
+        height: var(--codex-frame-height, 100svh) !important;
+        max-height: var(--codex-frame-height, 100svh) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        overscroll-behavior: contain !important;
+        -webkit-overflow-scrolling: touch;
+      }
+      body.codex-route-comments main {
+        height: calc(var(--codex-frame-height, 100svh) - 64px) !important;
+        max-height: calc(var(--codex-frame-height, 100svh) - 64px) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        overscroll-behavior: contain !important;
+        -webkit-overflow-scrolling: touch;
+      }
+      body.codex-scroll-page .fixed.inset-0,
+      body.codex-scroll-page .bg-sway {
+        position: fixed !important;
+        inset: 0 !important;
       }
       img {
         image-rendering: auto;
@@ -327,8 +389,19 @@
     `;
   }
 
+  function setFramePageMode(doc) {
+    const frameHeight = frame.getBoundingClientRect().height || window.innerHeight;
+    doc.documentElement.style.setProperty("--codex-frame-height", `${frameHeight}px`);
+    Array.from(doc.body.classList)
+      .filter((className) => className.startsWith("codex-route-"))
+      .forEach((className) => doc.body.classList.remove(className));
+    doc.body.classList.toggle("codex-scroll-page", currentRoute === "lyrics" || currentRoute === "comments");
+    doc.body.classList.toggle("codex-fixed-page", currentRoute !== "lyrics" && currentRoute !== "comments");
+    doc.body.classList.add(`codex-route-${currentRoute}`);
+  }
+
   function hideInternalNavs(doc) {
-    Array.from(doc.querySelectorAll("body > nav, body nav.fixed, body nav[class*='bottom'], .min-h-screen > nav")).forEach(
+    Array.from(doc.querySelectorAll("body > nav, body nav.fixed, body nav[class*='bottom'], .min-h-screen > nav, body.codex-fixed-page nav")).forEach(
       (node) => {
         node.style.setProperty("display", "none", "important");
         node.setAttribute("aria-hidden", "true");
@@ -346,6 +419,7 @@
     if (!doc) return;
 
     injectShellCss(doc);
+    setFramePageMode(doc);
     hideInternalNavs(doc);
     wireBottomNav(doc);
     if (currentRoute === "player") {
