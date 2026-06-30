@@ -125,10 +125,10 @@
         }
     </style>
 </head>
-<body class="text-on-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container" style="background-image: url('../assets/images/local-remote/remote-20f987126a7a.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
-<div class="min-h-screen flex flex-col max-w-md mx-auto relative overflow-hidden">
+<body class="text-on-surface font-sans selection:bg-secondary-container selection:text-on-secondary-container" style="background-image: url('../assets/images/local-remote/remote-20f987126a7a.jpg'); background-size: cover; background-position: center;">
+<div class="min-h-screen flex flex-col max-w-md mx-auto relative overflow-visible">
 <!-- Header -->
-<header class="px-container-padding-mobile py-6 flex justify-between items-center border-b border-outline-variant relative"><div class="absolute inset-0 bg-black/50 backdrop-blur-sm -z-10"></div><div class="flex flex-col"> <div class="flex gap-2 mb-2"> <button class="text-mono-data bg-white/10 text-white px-2 py-1 rounded-sm font-bold hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary" onclick="this.contentEditable=true;this.focus()">2026</button> <button class="text-mono-data bg-white/10 text-white px-2 py-1 rounded-sm font-bold hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary" onclick="document.getElementById('month-overlay').classList.remove('hidden')">JUNE</button> </div> <h1 class="text-headline-md font-semibold text-white uppercase tracking-wider">Today</h1> <p class="text-body-sm text-white/70" id="date-display">Tuesday, Jun 30</p> </div> <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-95 transition-all"> <span class="material-symbols-outlined">settings</span> </button></header>
+<header class="px-container-padding-mobile py-6 flex justify-between items-center border-b border-outline-variant relative"><div class="absolute inset-0 bg-black/50 -z-10"></div><div class="flex flex-col"> <div class="flex gap-2 mb-2"> <button id="year-button" class="text-mono-data bg-white/10 text-white px-2 py-1 rounded-sm font-bold hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary" onclick="this.contentEditable=true;this.focus()">2026</button> <button id="month-button" class="text-mono-data bg-white/10 text-white px-2 py-1 rounded-sm font-bold hover:bg-white/20 focus:outline-none focus:ring-1 focus:ring-primary" onclick="document.getElementById('month-overlay').classList.remove('hidden')">JUNE</button> </div> <h1 class="text-headline-md font-semibold text-white uppercase tracking-wider">Today</h1> <p class="text-body-sm text-white/70" id="date-display">Tuesday, Jun 30</p> </div> <button class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-95 transition-all"> <span class="material-symbols-outlined">settings</span> </button></header>
 <!-- Main Content -->
 <main class="flex-1 px-container-padding-mobile py-8 flex flex-col items-center justify-center space-y-12">
 <!-- Status Card -->
@@ -143,7 +143,7 @@
 </button>
 </div>
 <!-- Calendar Streak Placeholder -->
-<div class="w-full p-6 rounded-xl border border-outline-variant bg-black/40"><div class="flex justify-between items-center mb-4"> <h3 class="font-semibold text-body-lg uppercase tracking-tight text-white">Your Streak</h3> <span class="bg-white text-black px-3 py-1 rounded-full text-mono-data">12 DAYS</span> </div> <div class="grid grid-cols-7 gap-2" id="streak-grid"> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="1">M</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="2">T</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="3">W</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="4">T</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="5">F</div> <div class="aspect-square bg-white text-black rounded-sm flex items-center justify-center text-xs font-bold" data-day="6">S</div> <div class="aspect-square bg-white/10 text-white/50 rounded-sm flex items-center justify-center text-xs" data-day="7">S</div> </div></div>
+<div class="w-full p-6 rounded-xl border border-outline-variant bg-black/40"><div class="flex justify-between items-center mb-4"> <h3 class="font-semibold text-body-lg uppercase tracking-tight text-white">Your Streak</h3> <span id="streak-count" class="bg-white text-black px-3 py-1 rounded-full text-mono-data">0 DAYS</span> </div> <div class="grid grid-cols-7 gap-2" id="streak-grid"> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="1">M</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="2">T</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="3">W</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="4">T</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="5">F</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="6">S</div> <div class="aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold" data-day="7">S</div> </div></div>
 </main>
 <!-- Footer Navigation -->
 <nav class="border-t border-outline-variant px-6 py-4 relative"><div class="absolute inset-0 bg-black/60 backdrop-blur-md -z-10"></div><div class="flex justify-around items-center relative"> <button onclick="openRoute(event, 'player')" class="flex flex-col items-center text-white/60 hover:text-white active:scale-95 transition-transform"> <div class="w-6 h-6 mb-1"> <img alt="Player" class="w-full h-full object-contain pixelated invert" src="../assets/images/local-remote/remote-982edb862f4d.jpg"> </div> <span class="text-[10px] font-bold uppercase">Player</span> </button> <button onclick="openRoute(event, 'calendar')" class="flex flex-col items-center text-white active:scale-95 transition-transform"> <div class="w-6 h-6 mb-1"> <img alt="Calendar" class="w-full h-full object-contain pixelated invert" src="../assets/images/local-remote/remote-fc6677277b64.jpg"> </div> <span class="text-[10px] font-bold uppercase border-b-2 border-white">Calendar</span> </button> <button onclick="openRoute(event, 'rewards')" class="flex flex-col items-center text-white/60 hover:text-white active:scale-95 transition-transform"> <div class="w-6 h-6 mb-1"> <img alt="Rewards" class="w-full h-full object-contain pixelated invert" src="../assets/images/local-remote/remote-d7203ab918a5.jpg"> </div> <span class="text-[10px] font-bold uppercase">Rewards</span> </button> </div></nav>
@@ -177,28 +177,124 @@ function openRoute(event, route) {
 }
 
         // --- Setup Logic ---
-        const today = new Date(2026, 5, 30);
-        const dayOfWeek = today.getDay(); // 0 (Sun) to 6 (Sat)
-        const requiredClicks = dayOfWeek === 0 ? 7 : dayOfWeek;
+        const rewardKey = 'daily-rhythm-rewards-v1';
         const maxClickGapMs = 1000;
+        const dateState = getDateState();
+        const today = dateState.date;
+        const requiredClicks = dateState.requiredClicks;
+        const todayKey = dateState.dateKey;
         let currentClicks = 0;
         let lastClickAt = 0;
-        let checkedIn = false;
+        let checkedIn = isCheckedIn(todayKey);
         const pawButton = document.getElementById('paw-button');
         const clickHint = document.getElementById('click-hint');
         const todayCell = document.querySelector(`[data-day="${requiredClicks}"]`);
+        const streakCount = document.getElementById('streak-count');
+        const completedCellClass = 'aspect-square bg-white text-black rounded-sm flex items-center justify-center text-xs font-bold';
+        const openCellClass = 'aspect-square bg-white/20 text-white rounded-sm flex items-center justify-center text-xs font-bold';
+        const mutedCellClass = 'aspect-square bg-white/10 text-white/50 rounded-sm flex items-center justify-center text-xs font-bold';
 
-        function markCheckedIn() {
+        function pad(value) {
+            return String(value).padStart(2, '0');
+        }
+
+        function formatDateKey(date) {
+            return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+        }
+
+        function fallbackDateState() {
+            const date = new Date();
+            const day = date.getDay();
+            return {
+                date,
+                dateKey: formatDateKey(date),
+                year: date.getFullYear(),
+                month: date.toLocaleString('en-US', { month: 'long' }).toUpperCase(),
+                dateText: date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }),
+                requiredClicks: day === 0 ? 7 : day,
+            };
+        }
+
+        function getDateState() {
+            if (window.parent && window.parent !== window && typeof window.parent.dailyDateState === 'function') {
+                return window.parent.dailyDateState();
+            }
+            return fallbackDateState();
+        }
+
+        function readRewards() {
+            if (window.parent && window.parent !== window && typeof window.parent.dailyRewardsState === 'function') {
+                return window.parent.dailyRewardsState();
+            }
+            try {
+                const parsed = JSON.parse(localStorage.getItem(rewardKey) || '{}');
+                return {
+                    tokens: Number(parsed.tokens) || 0,
+                    history: Number(parsed.history) || 0,
+                    checkins: parsed.checkins && typeof parsed.checkins === 'object' ? parsed.checkins : {},
+                    streak: 0,
+                };
+            } catch (error) {
+                return { tokens: 0, history: 0, checkins: {}, streak: 0 };
+            }
+        }
+
+        function isCheckedIn(dateKey) {
+            if (window.parent && window.parent !== window && typeof window.parent.dailyIsCheckedIn === 'function') {
+                return window.parent.dailyIsCheckedIn(dateKey);
+            }
+            return Boolean(readRewards().checkins[dateKey]);
+        }
+
+        function completeCheckIn() {
+            if (window.parent && window.parent !== window && typeof window.parent.dailyCheckInComplete === 'function') {
+                return window.parent.dailyCheckInComplete(todayKey);
+            }
+            const state = readRewards();
+            if (!state.checkins[todayKey]) {
+                state.checkins[todayKey] = { completedAt: new Date().toISOString() };
+                state.tokens += 1;
+                state.history += 1;
+                localStorage.setItem(rewardKey, JSON.stringify(state));
+            }
+            return state;
+        }
+
+        function weekDateForDay(dayNumber) {
+            const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            start.setDate(start.getDate() - requiredClicks + dayNumber);
+            return start;
+        }
+
+        function renderStreakGrid(state = readRewards()) {
+            const checkins = state.checkins || {};
+            document.querySelectorAll('[data-day]').forEach((cell) => {
+                const dayNumber = Number(cell.dataset.day);
+                const dateKey = formatDateKey(weekDateForDay(dayNumber));
+                const isFuture = dayNumber > requiredClicks;
+                cell.className = checkins[dateKey] ? completedCellClass : isFuture ? mutedCellClass : openCellClass;
+            });
+            if (streakCount) {
+                const streak = Number(state.streak) || 0;
+                streakCount.innerText = `${streak} DAY${streak === 1 ? '' : 'S'}`;
+            }
+        }
+
+        function markCheckedIn(syncRewards = true) {
             checkedIn = true;
-            todayCell.className = 'aspect-square bg-white text-black rounded-sm flex items-center justify-center text-xs font-bold';
+            if (syncRewards) completeCheckIn();
+            if (todayCell) todayCell.className = completedCellClass;
             clickHint.innerText = 'Check-in Complete!';
             pawButton.classList.add('bg-secondary-container');
             pawButton.classList.remove('animate-float');
+            renderStreakGrid(readRewards());
         }
 
         function updateHint() {
             if (checkedIn) {
                 clickHint.innerText = 'Check-in Complete!';
+            } else if (currentClicks === 0) {
+                clickHint.innerText = requiredClicks === 1 ? 'Tap once' : `Tap ${requiredClicks} times`;
             } else if (currentClicks < requiredClicks) {
                 const remaining = requiredClicks - currentClicks;
                 clickHint.innerText = `Tap ${remaining} more time${remaining > 1 ? 's' : ''}`;
@@ -279,21 +375,32 @@ function openRoute(event, route) {
             createPixelBurst(centerX, centerY);
 
             if (currentClicks >= requiredClicks) {
-                markCheckedIn();
+                markCheckedIn(true);
             } else {
                 updateHint();
             }
         });
 
         function selectMonth(m) { 
-            document.querySelector('header button:nth-child(2)').innerText = m; 
+            document.getElementById('month-button').innerText = m; 
             document.getElementById('month-overlay').classList.add('hidden'); 
         }
 
+        function dailyRenderCalendarRewards(state) {
+            checkedIn = Boolean((state.checkins || {})[todayKey]);
+            renderStreakGrid(state);
+            if (checkedIn) markCheckedIn(false);
+            else updateHint();
+        }
+
+        window.dailyRenderCalendarRewards = dailyRenderCalendarRewards;
+        document.getElementById('year-button').innerText = dateState.year;
+        document.getElementById('month-button').innerText = dateState.month;
+        document.getElementById('date-display').innerText = dateState.dateText;
+        renderStreakGrid(readRewards());
+        if (checkedIn) markCheckedIn(false);
+
         // Initial Hint
         updateHint();
-
-        // Update real date display
-        document.getElementById('date-display').innerText = 'Tuesday, Jun 30';
     </script>
 </body></html>

@@ -26,8 +26,9 @@ body {
 }
 
 .phone {
-  width: min(390px, 100vw);
-  height: min(884px, 100dvh);
+  --app-nav-height: 88px;
+  width: min(430px, 100vw);
+  height: min(932px, 100dvh);
   background: #fff;
   overflow: hidden;
   position: relative;
@@ -36,16 +37,90 @@ body {
 #screen-frame {
   display: block;
   width: 100%;
-  height: 100%;
+  height: calc(100% - var(--app-nav-height));
   border: 0;
   background: #fff;
 }
 
+.app-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 12;
+  height: var(--app-nav-height);
+  padding-bottom: env(safe-area-inset-bottom);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #111;
+  background: #fff;
+}
+
+.app-nav-button {
+  appearance: none;
+  border: 0;
+  border-right: 1px solid #111;
+  border-radius: 0;
+  margin: 0;
+  padding: 8px 4px 10px;
+  background: #f8f8f8;
+  color: #3f3f3f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: 800 12px/1 Inter, Arial, sans-serif;
+  letter-spacing: 0;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    color 0.12s ease;
+}
+
+.app-nav-button:last-child {
+  border-right: 0;
+}
+
+.app-nav-button:active {
+  transform: scale(0.96);
+}
+
+.app-nav-button.is-active {
+  background: #000;
+  color: #fff;
+}
+
+.app-nav-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.app-nav-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+.app-nav-label {
+  white-space: nowrap;
+}
+
 .phone.is-locked #screen-frame {
+  height: 100%;
   filter: blur(18px);
   transform: scale(1.04);
   pointer-events: none;
   user-select: none;
+}
+
+.phone.is-locked .app-nav {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .password-gate {
@@ -101,18 +176,21 @@ body {
   border-radius: 0;
 }
 
-.password-input::placeholder {
-  color: transparent;
-}
-
 .password-panel.is-error {
   animation: password-shake 0.28s ease-in-out;
 }
 
 @keyframes password-shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 .phone:not(.is-locked) .password-gate {

@@ -172,6 +172,31 @@ function openRoute(event, route) {
   if (window.parent && window.parent !== window && typeof window.parent.dailyGo === 'function') window.parent.dailyGo(route);
   else window.location.href = route === 'player' ? '../#player' : `../#${route}`;
 }
+
+function readLocalRewards() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem('daily-rhythm-rewards-v1') || '{}');
+    return {
+      tokens: Number(parsed.tokens) || 0,
+      history: Number(parsed.history) || 0,
+    };
+  } catch (error) {
+    return { tokens: 0, history: 0 };
+  }
+}
+
+function dailyRenderRewards(state) {
+  const next = state || (window.parent && window.parent !== window && typeof window.parent.dailyRewardsState === 'function'
+    ? window.parent.dailyRewardsState()
+    : readLocalRewards());
+  const available = document.getElementById('available-tokens');
+  const history = document.getElementById('history-tokens');
+  if (available) available.innerText = `可用积分：${next.tokens} tokens`;
+  if (history) history.innerText = `历史积分：${next.history} tokens`;
+}
+
+window.dailyRenderRewards = dailyRenderRewards;
+document.addEventListener('DOMContentLoaded', () => dailyRenderRewards());
 </script>
 </head>
 <body class="bg-background text-on-background selection:bg-surface-variant selection:text-on-surface-variant" style="background-image: url('../assets/images/local-remote/remote-9fa34bb2dbc6.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
@@ -181,8 +206,8 @@ function openRoute(event, route) {
 <section class="mb-8">
 <div class="bg-primary text-on-primary px-6 py-4 flex items-center justify-between" style="backdrop-filter: blur(10px); background: rgb(0, 0, 0);">
 <div class="flex flex-col sm:flex-row gap-2 sm:gap-8">
-<span class="font-headline-md text-on-primary">可用积分：0 tokens</span>
-<span class="font-headline-md text-on-primary opacity-70">历史积分：0tokens</span>
+<span id="available-tokens" class="font-headline-md text-on-primary">可用积分：0 tokens</span>
+<span id="history-tokens" class="font-headline-md text-on-primary opacity-70">历史积分：0 tokens</span>
 </div>
 <span class="font-headline-md text-on-primary font-bold">Ricordati di fare il check-in, eh, non scordare!</span></div>
 </section>

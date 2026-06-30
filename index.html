@@ -4,12 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Daily Rhythm Check-in</title>
-    <link rel="stylesheet" href="./app.css?v=20260630c" />
+    <link rel="stylesheet" href="./app.css?v=20260630d" />
   </head>
   <body>
     <main class="stage" aria-label="Daily Rhythm Check-in mobile preview">
       <section class="phone is-locked" aria-label="Mobile app">
         <iframe id="screen-frame" title="Daily Rhythm Check-in screen"></iframe>
+
+        <nav class="app-nav" aria-label="App navigation">
+          <button class="app-nav-button" type="button" data-route="player" aria-label="Open player">
+            <span class="app-nav-icon">
+              <img alt="" src="./assets/images/player-local/player-img-07.jpg" />
+            </span>
+            <span class="app-nav-label">PLAYER</span>
+          </button>
+          <button class="app-nav-button" type="button" data-route="calendar" aria-label="Open calendar">
+            <span class="app-nav-icon">
+              <img alt="" src="./assets/images/player-local/player-img-08.jpg" />
+            </span>
+            <span class="app-nav-label">CALENDAR</span>
+          </button>
+          <button class="app-nav-button" type="button" data-route="rewards" aria-label="Open rewards">
+            <span class="app-nav-icon">
+              <img alt="" src="./assets/images/player-local/player-img-09.jpg" />
+            </span>
+            <span class="app-nav-label">REWARDS</span>
+          </button>
+        </nav>
+
         <section class="password-gate" aria-label="Password gate">
           <label class="password-panel" for="password-input" aria-label="输入密码">
             <span class="password-label">输入密码：</span>
@@ -20,13 +42,12 @@
               pattern="[0-9]*"
               autocomplete="one-time-code"
               maxlength="4"
-              placeholder="□□□□"
               aria-label="输入密码"
             />
           </label>
         </section>
       </section>
     </main>
-    <script src="./app.js?v=20260630c"></script>
+    <script src="./app.js?v=20260630d"></script>
   </body>
 </html>
