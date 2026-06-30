@@ -76,39 +76,37 @@ body {
   white-space: nowrap;
 }
 
-.password-boxes {
-  display: grid;
-  grid-template-columns: repeat(4, 28px);
-  gap: 7px;
-}
-
-.password-box {
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  background: #fff;
-  border: 1px solid #000;
+.password-input {
+  width: 150px;
+  height: 34px;
+  padding: 0 7px;
+  border: 0;
+  outline: 0;
+  background:
+    linear-gradient(#000, #000) 0 0 / 2px 100% no-repeat,
+    linear-gradient(#000, #000) 36px 0 / 2px 100% no-repeat,
+    linear-gradient(#000, #000) 72px 0 / 2px 100% no-repeat,
+    linear-gradient(#000, #000) 108px 0 / 2px 100% no-repeat,
+    linear-gradient(#000, #000) 144px 0 / 2px 100% no-repeat,
+    linear-gradient(#000, #000) 0 0 / 146px 2px no-repeat,
+    linear-gradient(#000, #000) 0 32px / 146px 2px no-repeat,
+    #fff;
   color: #000;
-  font-size: 18px;
+  font-family: "Courier New", monospace;
+  font-size: 20px;
   font-weight: 900;
+  letter-spacing: 20px;
+  caret-color: #000;
+  appearance: none;
+  border-radius: 0;
 }
 
-.password-box.is-filled::after {
-  content: "•";
-  transform: translateY(-1px);
+.password-input::placeholder {
+  color: transparent;
 }
 
 .password-panel.is-error {
   animation: password-shake 0.28s ease-in-out;
-}
-
-.password-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
 }
 
 @keyframes password-shake {

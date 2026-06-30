@@ -3,9 +3,8 @@
   const phone = document.querySelector(".phone");
   const passwordInput = document.getElementById("password-input");
   const passwordPanel = document.querySelector(".password-panel");
-  const passwordBoxes = Array.from(document.querySelectorAll(".password-box"));
   const requiredPassword = "8268";
-  let isUnlocked = sessionStorage.getItem("daily-rhythm-unlocked") === "1";
+  let isUnlocked = localStorage.getItem("daily-rhythm-unlocked") === "1";
 
   const routes = {
     player: "stitch-raw/player.html",
@@ -17,15 +16,9 @@
 
   let currentRoute = "player";
 
-  function updatePasswordBoxes(value) {
-    passwordBoxes.forEach((box, index) => {
-      box.classList.toggle("is-filled", index < value.length);
-    });
-  }
-
   function unlock() {
     isUnlocked = true;
-    sessionStorage.setItem("daily-rhythm-unlocked", "1");
+    localStorage.setItem("daily-rhythm-unlocked", "1");
     phone?.classList.remove("is-locked");
     passwordInput?.blur();
   }
@@ -33,7 +26,6 @@
   function resetPassword() {
     if (!passwordInput || !passwordPanel) return;
     passwordInput.value = "";
-    updatePasswordBoxes("");
     passwordPanel.classList.remove("is-error");
     void passwordPanel.offsetWidth;
     passwordPanel.classList.add("is-error");
@@ -48,7 +40,6 @@
 
     passwordInput.addEventListener("input", () => {
       passwordInput.value = passwordInput.value.replace(/\D/g, "").slice(0, 4);
-      updatePasswordBoxes(passwordInput.value);
       if (passwordInput.value.length !== 4) return;
       if (passwordInput.value === requiredPassword) {
         unlock();

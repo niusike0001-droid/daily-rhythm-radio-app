@@ -4,33 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Daily Rhythm Check-in</title>
-    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./app.css?v=20260630b" />
   </head>
   <body>
     <main class="stage" aria-label="Daily Rhythm Check-in mobile preview">
       <section class="phone is-locked" aria-label="Mobile app">
         <iframe id="screen-frame" title="Daily Rhythm Check-in screen"></iframe>
         <section class="password-gate" aria-label="Password gate">
-          <label class="password-panel" for="password-input">
+          <label class="password-panel" for="password-input" aria-label="输入密码">
             <span class="password-label">输入密码：</span>
-            <span class="password-boxes" aria-hidden="true">
-              <span class="password-box"></span>
-              <span class="password-box"></span>
-              <span class="password-box"></span>
-              <span class="password-box"></span>
-            </span>
             <input
               id="password-input"
               class="password-input"
               inputmode="numeric"
+              pattern="[0-9]*"
               autocomplete="one-time-code"
               maxlength="4"
+              placeholder="□□□□"
               aria-label="输入密码"
             />
           </label>
         </section>
       </section>
     </main>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=20260630b"></script>
   </body>
 </html>
