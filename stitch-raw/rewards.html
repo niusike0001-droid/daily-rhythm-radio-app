@@ -166,8 +166,15 @@
             box-shadow: 0 5px 18px rgba(0,0,0,0.18);
         }
     </style>
+<script>
+function openRoute(event, route) {
+  if (event) event.preventDefault();
+  if (window.parent && window.parent !== window && typeof window.parent.dailyGo === 'function') window.parent.dailyGo(route);
+  else window.location.href = route === 'player' ? '../#player' : `../#${route}`;
+}
+</script>
 </head>
-<body class="bg-background text-on-background selection:bg-surface-variant selection:text-on-surface-variant" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPeAHswYo2L63FCDyY5h_osYUIviWiP5HLjmsvg_rWkr9Nev-EWs5D-jYOd-vCKL6p8N3SDd88Ou_mD7vgzfFnHph8C0xMgwPKV8dOuCW7HdQgejSxjyQXQrW12a_QnfObs7B9vEAwLweQgShurxD7DaTGzV6Ty2JoZVVzD-JxGMiEQMAVcf8RHZZPjQ1whW7cGE0YaixSdb7GBTMGi0SOQKcWgtsnDmUWj8AePGYj3tBJHIXQNug7-9KJfz9kOqgA-bA'); background-attachment: fixed; background-size: cover; background-position: center;">
+<body class="bg-background text-on-background selection:bg-surface-variant selection:text-on-surface-variant" style="background-image: url('../assets/images/local-remote/remote-9fa34bb2dbc6.jpg'); background-attachment: fixed; background-size: cover; background-position: center;">
 <!-- Main Container -->
 <main class="w-full max-w-[1440px] mx-auto px-container-padding-mobile md:px-container-padding-desktop pt-8 pb-[86px]">
 <!-- Balance Section -->
@@ -194,13 +201,13 @@
 <!-- Slot 1 -->
 <article class="group gift-card">
 <div class="gift-media w-full aspect-[4/5] relative overflow-hidden flex items-center justify-center">
-<img alt="Wan Bao Lu" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOLsN2EZ5B2HAVSaVaw79vOG7r0mPRny7KSYFrds_J_VsP3WnANpQVDI24h1SagrC6dIIIpK7jbHeuMuRx06lbHmby6U4f9yLsToBdTDW9UuDPnpKCIxixNNy8JQWGtEChR9a_5-GNhvVFDTvH_3wfiPuACYt-weQFf3D2Kc3jZQZrfmPviA28QN7nOg-M4gmDGGvcK4v_2KUBgFq_Xqe2pBzUb0glB6yZMUMUizor8YEWMrNcftTYCmnKnr26rxbLirA">
+<img alt="Wan Bao Lu" class="w-full h-full object-contain" src="../assets/images/local-remote/remote-2bac6e34bbdb.jpg">
 <button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1.5 text-[10px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
 </article>
 <!-- Slot 2 -->
 <article class="group gift-card">
 <div class="gift-media w-full aspect-[4/5] relative overflow-hidden flex items-center justify-center">
-<img alt="Kuan Zhai" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkOX4VQPDbK5U6eNkr4itD36k_YMU9vSQ5lCpnuuIdT-jxEX-kpa8A8rcKuSNjv4t0O8mQZPLQkdxhTp7jWniV_-r2I0XB0JFO7G00FdyS55qP4UNZvd9DpzE1Wot5JwlZyMw8msvrvRgc2tm4WzsotjwB0uus4qrJCrJReBCPywh5bUDMj_i7-39F4HKEJ5ff3emy7npODNwF_fo-uGEMvfbYbvMLKXZlxFc9H51ASkRks4Cl7C5e9M2mbvmcsL9o_rE">
+<img alt="Kuan Zhai" class="w-full h-full object-contain" src="../assets/images/local-remote/remote-8a75b5b46b93.jpg">
 <button class="absolute bottom-2 right-2 bg-primary text-on-primary px-2 py-1.5 text-[10px] font-label-caps hover:bg-inverse-surface transition-colors z-10">REDEEM-30tokens</button></div>
 </article>
 <!-- Slot 3 -->
@@ -210,24 +217,24 @@
 </main>
 <!-- Unified Fixed Bottom Navigation -->
 <nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest border-t border-outline-variant px-6 py-3 flex justify-around items-center"><!-- Player Tab -->
-<a class="flex flex-col items-center gap-1.5 group" href="#">
+<a class="flex flex-col items-center gap-1.5 group" href="../#player" onclick="openRoute(event, 'player')">
 <div class="pixel-icon-container">
-<img alt="Player" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida/AP1WRLvSpiTipzEc5_cvDsU7I9Ovsdv5KgQB7JxuofnO5dQ2DF3YvGohimcbMbWtZkqXwzPe6eGouyIAVm6LjEA4WTqMoM98rfDdQICYFr0g6DZsIt9YIPbAKFTXAPNShQEyl8BgaMNM81UlGImqk36ip5KluK7UPbKJyG0QnDgm0ds5Or9H7PxDpSR4mMfQqgvBsQZjfyJ5iEfPDbMuqKg5Gy4oC_v_qv0IMVKhvIVGiptOcxqj42KweyZY6-3B">
+<img alt="Player" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" src="../assets/images/local-remote/remote-982edb862f4d.jpg">
 </div>
 <span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">PLAYER</span>
 </a>
 <!-- Calendar Tab -->
-<a class="flex flex-col items-center gap-1.5 group" href="#">
+<a class="flex flex-col items-center gap-1.5 group" href="../#calendar" onclick="openRoute(event, 'calendar')">
 <div class="pixel-icon-container">
-<img alt="Calendar" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" src="https://lh3.googleusercontent.com/aida/AP1WRLsmyMiYBGfKAXl1xr8yxHkTjvh82DZ_xZ1W4p50sMAuvO0mnPcksI2LzwFN3kwsCA3FLesuzL8uN-Q-nouDZXIO79lQd2ELqPFOpCWGPWiTobKJFd9R4hKCGsEgD2WUGLI1hUXORX-tbbGFXFBt2004Tq-MOjXyXW2104xTZpv433xSA14frMCjYrcG2-HJej1W5l-fWwKHp1GPotdwGV-R7thv6ozHBDb9OBnFqM5K4vfvRUaeV7fr_YI">
+<img alt="Calendar" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" src="../assets/images/local-remote/remote-fc6677277b64.jpg">
 </div>
 <span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-primary transition-colors">CALENDAR</span>
 </a>
 <!-- Rewards Tab (Active) -->
-<a class="flex flex-col items-center gap-1.5 relative" href="#">
+<a class="flex flex-col items-center gap-1.5 relative" href="../#rewards" onclick="openRoute(event, 'rewards')">
 <div class="absolute -top-1 w-10 h-10 bg-surface-container-high rounded-full -z-10 opacity-50"></div>
 <div class="pixel-icon-container animate-idle-float">
-<img alt="Rewards" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/AP1WRLuzGfqxMUwDDN-xZ8M3KS9qgm2CNUlJ6qrLdCWAERDSqvS7XR5t7Zypg-rXrijlvJ_5tNL9dvwRoGaEkqAX8DRciYOHUhPZf6Gyiib9mqBStO9MSGE5MH8Iawd-1ut4dH6J25Ess6P6bMpMgM0WP36dwJTDP8yQwCOtlUzgLqLfILdO5ye8TqBjZ9-GFTmZPMMMvwoypZoZzmLIvaoIzyuRD5dZwQvII5XT-wQkLOZGBtZvWMNxgZgb75k">
+<img alt="Rewards" class="w-full h-full object-contain" src="../assets/images/local-remote/remote-d7203ab918a5.jpg">
 </div>
 <span class="font-label-caps text-[10px] text-primary">REWARDS</span>
 </a></nav>

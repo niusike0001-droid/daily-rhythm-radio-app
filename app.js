@@ -7,11 +7,11 @@
   let isUnlocked = localStorage.getItem("daily-rhythm-unlocked") === "1";
 
   const routes = {
-    player: "stitch-raw/player.html",
-    calendar: "stitch-raw/calendar.html",
-    rewards: "stitch-raw/rewards.html",
-    lyrics: "stitch-raw/lyrics.html",
-    comments: "comments.html",
+    player: "stitch-raw/player.html?v=20260630c",
+    calendar: "stitch-raw/calendar.html?v=20260630c",
+    rewards: "stitch-raw/rewards.html?v=20260630c",
+    lyrics: "stitch-raw/lyrics.html?v=20260630c",
+    comments: "comments.html?v=20260630c",
   };
 
   let currentRoute = "player";
@@ -66,6 +66,8 @@
       history.replaceState(null, "", `#${next}`);
     }
   }
+
+  window.dailyGo = go;
 
   function addRouteClick(element, route, delay = 0) {
     if (!element || element.dataset.codexRouteBound === route) return;
